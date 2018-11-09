@@ -1,5 +1,7 @@
+import numpy as np
 from sklearn import tree
 from sklearn import naive_bayes
+from sklearn.metrics import accuracy_score
 
 #Read the the Information Label DS1
 with open('ds1/ds1Info.csv', 'r') as file:
@@ -11,14 +13,14 @@ infoLabels = [d[-1] for d in infoData]
 #Read the the training set DS1
 with open('ds1/ds1Train.csv', 'r') as file:
     trainData = [line.split(',') for line in file.read().split('\n')]
-trainData = [[element for element in row] for row in trainData]
+trainData = [[int(element) for element in row] for row in trainData]
 trainFeatures = [d[:-1] for d in trainData]
 trainLabels = [d[-1] for d in trainData]
 
 #Read the the validation set DS1
 with open('ds1/ds1Val.csv', 'r') as file:
     validationData = [line.split(',') for line in file.read().split('\n')]
-validationFeatures = [[element for element in row] for row in validationData]
+validationData = [[int(element) for element in row] for row in validationData]
 validationFeatures = [d[:-1] for d in validationData]
 validationLabels = [d[-1] for d in validationData]
 
@@ -64,15 +66,48 @@ print("Validation feature row 514: ", validationFeatures[513])
 print("Validation label row 514: ", validationLabels[513])
 print('\n')
 
+#Parsing the data to arrays
+trainFeaturesArray = np.asarray(trainFeatures)
+trainLabelsArray = np.asarray(trainLabels)
+validationFeaturesArray = np.asarray(validationFeatures)
 
 #Decision Tree Implementation
-#classifier = tree.DecisionTreeClassifier()
-#classifier.fit(trainFeatures, trainLabels)
-#validationPredicted = classifier.predict(validationFeatures)
+classifier = tree.DecisionTreeClassifier()
+classifier.fit(trainFeaturesArray, trainLabelsArray)
+validationPredicted = classifier.predict(validationFeaturesArray)
+validationPredictedArray = np.asarray(validationPredicted)
+
+#Decision Tree Predicted Labels
+print('Predicted Labels for decision Tree')
+print(validationPredictedArray)
+'''for predictedLabel in validationPredictedArray:
+    print(predictedLabel)'''
+
+accuracy = accuracy_score(validationLabels, validationPredictedArray)
+print('Accuracy of Decision Tree Classifier: ', "{0:.3%}".format(accuracy))
+print('\n')
+
+with open('ds1Val-dt.csv', 'w') as file:
+ for i in range(len(validationPredictedArray)):
+    file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
 
 
-#Naive Bayes
+#Naive Bayes Implementation
 classifier = naive_bayes.MultinomialNB()
-#classifier.fit(trainFeatures, trainLabels)
-#validation_predicted = classifier.predict(validationFeatures)
+classifier.fit(trainFeaturesArray, trainLabelsArray)
+validationPredicted = classifier.predict(validationFeaturesArray)
+validationPredictedArray = np.asarray(validationPredicted)
+
+#Predicted Labels
+print('Predicted Labels for Naive Bayes')
+print(validationPredictedArray)
+'''for predictedLabel in validationPredictedArray:
+    print(predictedLabel)'''
+accuracy = accuracy_score(validationLabels, validationPredictedArray)
+print('Accuracy of Naive Bayes Classifier: ', "{0:.3%}".format(accuracy))
+print('\n')
+
+with open('ds1Val-nb.csv', 'w') as file:
+ for i in range(len(validationPredictedArray)):
+    file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
 
