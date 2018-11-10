@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/DataManipulator.py" line="77" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7775710d-0ab5-4b98-a579-39f94c3b3ff3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataManipulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManipulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds1/ds1Train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1/ds1Train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds1/ds1Val.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1/ds1Val.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds1Val-dt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1Val-dt.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds1Val-nb.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1Val-nb.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,22 +20,22 @@
     <session id="1684203955">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.2" value="2" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.2" value="3" />
           <entry key="project.open.time.22" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.3" value="2" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="170" />
-          <entry key="py" value="2079" />
+          <entry key="py" value="3147" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2249" />
+          <entry key="Python" value="3317" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -51,10 +55,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DataManipulator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+            <state relative-caret-position="217">
+              <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#1119#1434#1" />
+                <element signature="e#1435#1952#1" />
+                <element signature="e#1953#2208#1" />
+                <element signature="e#4942#5249#1" />
+                <element signature="e#5250#5767#1" />
+                <element signature="e#5768#6023#1" />
               </folding>
             </state>
           </provider>
@@ -170,7 +180,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4565678" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4131356" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3993644" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -227,10 +237,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataManipulator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+        <state relative-caret-position="217">
+          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#1119#1434#1" />
+            <element signature="e#1435#1952#1" />
+            <element signature="e#1953#2208#1" />
+            <element signature="e#4942#5249#1" />
+            <element signature="e#5250#5767#1" />
+            <element signature="e#5768#6023#1" />
           </folding>
         </state>
       </provider>
