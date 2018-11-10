@@ -1,2 +1,2 @@
-# RecognizeDigits
+# RecognizeCharacters
 Recognize characters using machine learning
