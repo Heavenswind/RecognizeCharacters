@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/DataManipulator.py" line="77" />
+    <bookmark url="file://$PROJECT_DIR$/DataManipulator.py" line="35" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7775710d-0ab5-4b98-a579-39f94c3b3ff3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataManipulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManipulator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ds1Val-dt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1Val-dt.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds1Val-nb.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1Val-nb.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds2Val-dt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds2Val-dt.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,12 +30,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="170" />
-          <entry key="py" value="3147" />
+          <entry key="py" value="3383" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3317" />
+          <entry key="Python" value="3553" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -55,16 +55,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DataManipulator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+            <state relative-caret-position="115">
+              <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#1119#1434#1" />
-                <element signature="e#1435#1952#1" />
-                <element signature="e#1953#2208#1" />
-                <element signature="e#4942#5249#1" />
-                <element signature="e#5250#5767#1" />
-                <element signature="e#5768#6023#1" />
               </folding>
             </state>
           </provider>
@@ -237,16 +231,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataManipulator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+        <state relative-caret-position="115">
+          <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#1119#1434#1" />
-            <element signature="e#1435#1952#1" />
-            <element signature="e#1953#2208#1" />
-            <element signature="e#4942#5249#1" />
-            <element signature="e#5250#5767#1" />
-            <element signature="e#5768#6023#1" />
           </folding>
         </state>
       </provider>
