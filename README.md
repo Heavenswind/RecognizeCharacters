@@ -1,2 +1,2 @@
 # RecognizeDigits
-Recognize Handwritten digits using machine learning
+Recognize characters using machine learning
