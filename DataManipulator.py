@@ -1,171 +1,97 @@
 import numpy as np
+import pickle
 from sklearn import tree
 from sklearn import naive_bayes
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report, confusion_matrix
 
-#Read the the Information Label DS1
-with open('ds1/ds1Info.csv', 'r') as file:
-    infoData = [line.split(',') for line in file.read().split('\n')][1:]
-infoData = [[element for element in row] for row in infoData]
-infoFeatures = [d[:-1] for d in infoData]
-infoLabels = [d[-1] for d in infoData]
 
-#Read the the training set DS1
-with open('ds1/ds1Train.csv', 'r') as file:
-    trainData = [line.split(',') for line in file.read().split('\n')]
-trainData = [[int(element) for element in row] for row in trainData]
-trainFeatures = [d[:-1] for d in trainData]
-trainLabels = [d[-1] for d in trainData]
-
-#Read the the validation set DS1
-with open('ds1/ds1Val.csv', 'r') as file:
-    validationData = [line.split(',') for line in file.read().split('\n')]
-validationData = [[int(element) for element in row] for row in validationData]
-validationFeatures = [d[:-1] for d in validationData]
-validationLabels = [d[-1] for d in validationData]
+# Load a trained model
+def load_trained_model(name):
+    with open('model/' + name + '.pkl', 'rb') as fn:
+        new_classifier = pickle.load(fn)
+    return new_classifier
 
 
-#Parsing the data to arrays
-trainFeaturesArray = np.asarray(trainFeatures)
-trainLabelsArray = np.asarray(trainLabels)
-validationFeaturesArray = np.asarray(validationFeatures)
+# Save a trained model
+def save_trained_model(name, classifier):
+    with open('model/' + name + '.pkl', 'wb') as fn:
+        pickle.dump(classifier, fn)
 
 
-
-#Decision Tree Implementation
-classifier = tree.DecisionTreeClassifier()
-classifier.fit(trainFeaturesArray, trainLabelsArray)
-validationPredicted = classifier.predict(validationFeaturesArray)
-validationPredictedArray = np.asarray(validationPredicted)
-#Decision Tree Predicted Labels
-print('Predicted Labels for decision Tree for DS1')
-#print(validationPredictedArray)
-accuracy = accuracy_score(validationLabels, validationPredictedArray)
-print('Accuracy of Decision Tree Classifier for DS1: ', "{0:.3%}".format(accuracy))
-print('\n')
-with open('ds1Val-dt.csv', 'w') as file:
- for i in range(len(validationPredictedArray)):
-    file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
+# Save Output Labels
+def save_output_labels(name, algorithm, prediction):
+    with open(name + 'Val-' + algorithm + '.csv', 'w') as fn:
+        for i in range(len(prediction)):
+            fn.write('%d,%d\n' % (i + 1, prediction[i]))
 
 
-#Naive Bayes Implementation
-classifier = naive_bayes.BernoulliNB()
-classifier.fit(trainFeaturesArray, trainLabelsArray)
-validationPredicted = classifier.predict(validationFeaturesArray)
-validationPredictedArray = np.asarray(validationPredicted)
-#Predicted Naive Bayes Labels
-print('Predicted Labels for Naive Bayes for DS1')
-#print(validationPredictedArray)
-accuracy = accuracy_score(validationLabels, validationPredictedArray)
-print('Accuracy of Naive Bayes Classifier for DS1: ', "{0:.3%}".format(accuracy))
-print('\n')
-with open('ds1Val-nb.csv', 'w') as file:
- for i in range(len(validationPredictedArray)):
-    file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
+# Train a model with test data
+def train(name):
+    with open('' + name + '/' + name + 'Train.csv', 'r') as file:
+        trainData = [line.split(',') for line in file.read().split('\n')]
+    trainData = [[int(element) for element in row] for row in trainData]
+    trainFeatures = [d[:-1] for d in trainData]
+    trainLabels = [d[-1] for d in trainData]
+
+    # Parsing the data to arrays
+    trainFeaturesArray = np.asarray(trainFeatures)
+    trainLabelsArray = np.asarray(trainLabels)
+
+    # Decision Tree Implementation
+    classifier = tree.DecisionTreeClassifier(criterion='entropy', max_features=0.80, max_depth=26)
+    classifier.fit(trainFeaturesArray, trainLabelsArray)
+    save_trained_model(name+'-dt', classifier)
+
+    # Naive Bayes Implementation
+    classifier = naive_bayes.BernoulliNB()
+    classifier.fit(trainFeaturesArray, trainLabelsArray)
+
+    save_trained_model(name+'-nb', classifier)
+
+    # SVM Implementation
+    classifier = svm.SVC(gamma="scale", kernel="poly", degree=8)
+    classifier.fit(trainFeaturesArray, trainLabelsArray)
+    save_trained_model(name+'-3', classifier)
 
 
+# Validate our models with the given data-set
+def validate(name):
+    with open(name + '/' + name + 'Val.csv', 'r') as file:
+        validationData = [line.split(',') for line in file.read().split('\n')]
+    validationData = [[int(element) for element in row] for row in validationData]
+    validationFeatures = [d[:-1] for d in validationData]
+    validationLabels = [d[-1] for d in validationData]
 
-#SVM Implementation
-classifier = svm.SVC(gamma="scale", kernel="poly",  degree=8)
-classifier.fit(trainFeaturesArray, trainLabelsArray)
-validationPredicted = classifier.predict(validationFeaturesArray)
-validationPredictedArray = np.asarray(validationPredicted)
-#Predicted SVM Model Labels
-print('Predicted Labels for SVM for DS1')
-accuracy = accuracy_score(validationLabels, validationPredictedArray)
-#print(validationPredictedArray)
-print('Accuracy of SVM for DS1: ', "{0:.3%}".format(accuracy))
-print("Classification report for classifier %s:\n%s\n"
-      % (classifier, classification_report(validationLabels, validationPredictedArray)))
-print("Confusion matrix:\n%s" % confusion_matrix(validationLabels, validationPredictedArray))
-print('\n')
-with open('ds1Val-3.csv', 'w') as file:
-    for i in range(len(validationPredictedArray)):
-        file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
+    # Parse the array for prediction
+    validation_array = np.asarray(validationFeatures)
 
+    # Decision tree prediction
+    dt_classifier = load_trained_model(name + '-dt')
+    validation_predicted = dt_classifier.predict(validation_array)
+    accuracy = accuracy_score(validationLabels, validation_predicted)
+    print('Accuracy of Decision Tree Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
+    print('\n')
+    save_output_labels(name, 'dt', validation_predicted)
 
-#################################################################################
-##DS2
-#Read the the Information Label DS2
-with open('ds2/ds2Info.csv', 'r') as file:
-    infoData = [line.split(',') for line in file.read().split('\n')][1:]
-infoData = [[element for element in row] for row in infoData]
-infoFeatures = [d[:-1] for d in infoData]
-infoLabels = [d[-1] for d in infoData]
+    # Naive Bayes prediction
+    nb_classifier = load_trained_model(name + '-nb')
+    validation_predicted = nb_classifier.predict(validation_array)
+    accuracy = accuracy_score(validationLabels, validation_predicted)
+    print('Accuracy of Naive Bayes Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
+    print('\n')
+    save_output_labels(name, 'nb', validation_predicted)
 
-#Read the the training set DS2
-with open('ds2/ds2Train.csv', 'r') as file:
-    trainData = [line.split(',') for line in file.read().split('\n')]
-trainData = [[int(element) for element in row] for row in trainData]
-trainFeatures = [d[:-1] for d in trainData]
-trainLabels = [d[-1] for d in trainData]
+    # SVM  prediction
+    svm_classifier = load_trained_model(name + '-3')
+    validation_predicted = svm_classifier.predict(validation_array)
+    accuracy = accuracy_score(validationLabels, validation_predicted)
+    print('Accuracy of SVM Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
+    save_output_labels(name, '3', validation_predicted)
+    print('\n')
 
-#Read the the validation set DS2
-with open('ds2/ds2Val.csv', 'r') as file:
-    validationData = [line.split(',') for line in file.read().split('\n')]
-validationData = [[int(element) for element in row] for row in validationData]
-validationFeatures = [d[:-1] for d in validationData]
-validationLabels = [d[-1] for d in validationData]
-
-# Parsing the data to arrays
-trainFeaturesArray = np.asarray(trainFeatures)
-trainLabelsArray = np.asarray(trainLabels)
-validationFeaturesArray = np.asarray(validationFeatures)
-
-# Decision Tree Implementation
-classifier = tree.DecisionTreeClassifier()
-classifier.fit(trainFeaturesArray, trainLabelsArray)
-validationPredicted = classifier.predict(validationFeaturesArray)
-validationPredictedArray = np.asarray(validationPredicted)
-# Decision Tree Predicted Labels
-print('Predicted Labels for decision Tree for DS2')
-#print(validationPredictedArray)
-accuracy = accuracy_score(validationLabels, validationPredictedArray)
-print('Accuracy of Decision Tree Classifier for DS2: ', "{0:.3%}".format(accuracy))
-print('\n')
-with open('ds2Val-dt.csv', 'w') as file:
-    for i in range(len(validationPredictedArray)):
-        file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
-
-
-# Naive Bayes Implementation
-classifier = naive_bayes.BernoulliNB()
-classifier.fit(trainFeaturesArray, trainLabelsArray)
-validationPredicted = classifier.predict(validationFeaturesArray)
-validationPredictedArray = np.asarray(validationPredicted)
-# Naive Bayes Predicted Labels
-print('Predicted Labels for Naive Bayes for DS2')
-#print(validationPredictedArray)
-accuracy = accuracy_score(validationLabels, validationPredictedArray)
-print('Accuracy of Naive Bayes Classifier for DS2: ', "{0:.3%}".format(accuracy))
-print('\n')
-with open('ds2Val-nb.csv', 'w') as file:
-    for i in range(len(validationPredictedArray)):
-        file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
-
-
-
-#SVM Implementation
-classifier = svm.SVC(gamma="scale", kernel="poly", degree=8)
-classifier.fit(trainFeaturesArray, trainLabelsArray)
-validationPredicted = classifier.predict(validationFeaturesArray)
-validationPredictedArray = np.asarray(validationPredicted)
-#Predicted SVM Model Labels
-print('Predicted Labels for SVM for DS2')
-accuracy = accuracy_score(validationLabels, validationPredictedArray)
-#print(validationPredictedArray)
-print('Accuracy of SVM for DS2: ', "{0:.3%}".format(accuracy))
-
-print("Classification report for classifier %s:\n%s\n"
-      % (classifier, classification_report(validationLabels, validationPredictedArray)))
-print("Confusion matrix:\n%s" % confusion_matrix(validationLabels, validationPredictedArray))
-
-print('\n')
-with open('ds2Val-3.csv', 'w') as file:
-    for i in range(len(validationPredictedArray)):
-        file.write('%d,%d\n' % (i + 1, validationPredictedArray[i]))
-
-
-#https://pdfs.semanticscholar.org/1b1d/097926a976114afbe2026cc13f1bcbec72e1.pdf
+train('ds1')
+validate('ds1')
+train('ds2')
+validate('ds2')
