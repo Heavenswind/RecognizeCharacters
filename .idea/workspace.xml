@@ -4,9 +4,12 @@
     <list default="true" id="7775710d-0ab5-4b98-a579-39f94c3b3ff3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataManipulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataManipulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds1/ds1Info.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1/ds1Info.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ds1Val-dt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds1Val-dt.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ds2/ds2Info.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds2/ds2Info.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ds2Val-dt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ds2Val-dt.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/ds1-dt.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/model/ds1-dt.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/ds2-dt.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/model/ds2-dt.pkl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,22 +21,23 @@
     <session id="1684203955">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.2" value="3" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.3" value="3" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="170" />
-          <entry key="py" value="7321" />
+          <entry key="py" value="7475" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="7491" />
+          <entry key="Python" value="7645" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -53,12 +57,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DataManipulator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
-              <caret line="92" selection-start-line="92" selection-end-line="92" />
+            <state relative-caret-position="285">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1541975312778" expanded="true" signature="631:794" ph="..." />
-                <marker date="1541975312778" expanded="true" signature="2420:3541" ph="..." />
+                <marker date="1542082058891" expanded="true" signature="631:785" ph="..." />
+                <marker date="1542082058891" expanded="true" signature="1903:2860" ph="..." />
+                <marker date="1542082058891" expanded="true" signature="3383:4531" ph="..." />
               </folding>
             </state>
           </provider>
@@ -95,6 +100,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -106,7 +112,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -167,6 +172,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2046875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -237,12 +243,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataManipulator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        <state relative-caret-position="285">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1541975312778" expanded="true" signature="631:794" ph="..." />
-            <marker date="1541975312778" expanded="true" signature="2420:3541" ph="..." />
+            <marker date="1542082058891" expanded="true" signature="631:785" ph="..." />
+            <marker date="1542082058891" expanded="true" signature="1903:2860" ph="..." />
+            <marker date="1542082058891" expanded="true" signature="3383:4531" ph="..." />
           </folding>
         </state>
       </provider>

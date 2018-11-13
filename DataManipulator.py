@@ -22,7 +22,7 @@ def save_trained_model(name, classifier):
 
 # Save Output Labels
 def save_output_labels(name, algorithm, prediction):
-    with open(name + 'Val-' + algorithm + '.csv', 'w') as fn:
+    with open(name + algorithm + '.csv', 'w') as fn:
         for i in range(len(prediction)):
             fn.write('%d,%d\n' % (i + 1, prediction[i]))
 
@@ -56,6 +56,31 @@ def train(name):
     save_trained_model(name+'-3', classifier)
 
 
+def test(name):
+    with open('' + name + '/' + name + 'Test.csv', 'r') as file:
+        testData = [line.split(',') for line in file.read().split('\n')]
+    testData = [[int(element) for element in row] for row in testData]
+    testFeatures = [d for d in testData]
+
+    # Parsing the data to arrays
+    test_features_array = np.asarray(testFeatures)
+
+    # Decision tree prediction
+    dt_classifier = load_trained_model(name + '-dt')
+    test_predicted = dt_classifier.predict(test_features_array)
+    save_output_labels(name + 'Test-', 'dt', test_predicted)
+
+    # Naive Bayes prediction
+    nb_classifier = load_trained_model(name + '-nb')
+    test_predicted = nb_classifier.predict(test_features_array)
+    save_output_labels(name + 'Test-', 'nb', test_predicted)
+
+    # SVM  prediction
+    svm_classifier = load_trained_model(name + '-3')
+    test_predicted = svm_classifier.predict(test_features_array)
+    save_output_labels(name + 'Test-', '3', test_predicted)
+
+
 # Validate our models with the given data-set
 def validate(name):
     with open(name + '/' + name + 'Val.csv', 'r') as file:
@@ -73,7 +98,7 @@ def validate(name):
     accuracy = accuracy_score(validationLabels, validation_predicted)
     print('Accuracy of Decision Tree Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
     print('\n')
-    save_output_labels(name, 'dt', validation_predicted)
+    save_output_labels(name + 'Val-', 'dt', validation_predicted)
 
     # Naive Bayes prediction
     nb_classifier = load_trained_model(name + '-nb')
@@ -81,17 +106,20 @@ def validate(name):
     accuracy = accuracy_score(validationLabels, validation_predicted)
     print('Accuracy of Naive Bayes Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
     print('\n')
-    save_output_labels(name, 'nb', validation_predicted)
+    save_output_labels(name + 'Val-', 'nb', validation_predicted)
 
     # SVM  prediction
     svm_classifier = load_trained_model(name + '-3')
     validation_predicted = svm_classifier.predict(validation_array)
     accuracy = accuracy_score(validationLabels, validation_predicted)
     print('Accuracy of SVM Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
-    save_output_labels(name, '3', validation_predicted)
+    save_output_labels(name + 'Val-', '3', validation_predicted)
     print('\n')
+
 
 train('ds1')
 validate('ds1')
+test('ds1')
 train('ds2')
 validate('ds2')
+test('ds2')
