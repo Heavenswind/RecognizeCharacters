@@ -70,6 +70,7 @@ def test(name):
     test_predicted = dt_classifier.predict(test_features_array)
     save_output_labels(name + 'Test-', 'dt', test_predicted)
 
+
     # Naive Bayes prediction
     nb_classifier = load_trained_model(name + '-nb')
     test_predicted = nb_classifier.predict(test_features_array)
@@ -113,8 +114,8 @@ def validate(name):
     validation_predicted = svm_classifier.predict(validation_array)
     accuracy = accuracy_score(validationLabels, validation_predicted)
     print('Accuracy of SVM Classifier for ' + name + ': ', "{0:.3%}".format(accuracy))
-    save_output_labels(name + 'Val-', '3', validation_predicted)
     print('\n')
+    save_output_labels(name + 'Val-', '3', validation_predicted)
 
 
 train('ds1')
